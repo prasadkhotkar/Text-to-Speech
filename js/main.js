@@ -33,29 +33,29 @@ if (speechSynthesis.onvoiceschanged !== undefined) {
   speechSynthesis.onvoiceschanged = populateVoiceList;
 }
 
-// Speak
+// Speaking the content
 const speak = () => {
-    // Check if speaking
+    // to check if speaking
     if (synth.speaking) {
       console.error('Already speaking...');
       return;
     }
     if (textInput.value !== '') {
-      // Add background animation
+      // To add the background wave and color
       body.style.background = '#141414 url(img/wave.gif)';
       body.style.backgroundRepeat = 'repeat-x';
       body.style.backgroundSize = '100% 100%';
   
-      // Get speak text
+     // To Get speak text
       const speakText = new SpeechSynthesisUtterance(textInput.value);
   
-      // Speak end
+     // After speak ends
       speakText.onend = e => {
         console.log('Done speaking...');
         body.style.background = '#141414';
       };
   
-      // Speak error
+    // when Speak error occurs
       speakText.onerror = e => {
         console.error('Something went wrong');
       };
@@ -72,7 +72,7 @@ const speak = () => {
         }
       });
   
-      // Set pitch and rate
+      /// Set pitch and rate
       speakText.rate = rate.value;
       speakText.pitch = pitch.value;
       // Speak
@@ -89,11 +89,11 @@ const speak = () => {
     textInput.blur();
   });
   
-  // Rate value change
+   // to change the rate value
   rate.addEventListener('change', e => (rateValue.textContent = rate.value));
   
-  // Pitch value change
+   // for changing the pitch value
   pitch.addEventListener('change', e => (pitchValue.textContent = pitch.value));
   
-  // Voice select change
+ // To change the selected voice
   voiceSelect.addEventListener('change', e => speak());
